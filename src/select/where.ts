@@ -202,6 +202,9 @@ function whereFilterOp(op: string): firebase.firestore.WhereFilterOp {
     case 'CONTAINS':
       newOp = 'array-contains';
       break;
+    case 'CONTAINS-ANY':
+      newOp = 'array-contains-any';
+      break;
     case 'NOT':
     case 'NOT CONTAINS':
       throw new Error('"NOT" WHERE operator unsupported');
