@@ -58,7 +58,7 @@ export interface SQL_BinaryExpression {
     | 'LIKE'
     | 'BETWEEN'
     | 'CONTAINS'
-    | 'CONTAINS-ANY'
+    | 'CONTAINS_ANY'
     | 'NOT CONTAINS';
   left: SQL_Expression;
   right: SQL_Expression;

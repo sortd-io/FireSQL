@@ -85,7 +85,7 @@
     'IS'      : true,
     'LIKE'    : true,
     'CONTAINS': true,
-    'CONTAINS-ANY': true,
+    'CONTAINS_ANY': true,
     'NOT'     : true,
     'AND'     : true,
     'OR'      : true,
@@ -234,7 +234,7 @@ expr_list
  * | +, -                                                                   | identity, negation                   |
  * | *, /                                                                   | multiplication, division             |
 * | +, -                                                                    | addition, subtraction, concatenation |
- * | =, <, >, <=, >=, <>, !=, IS, LIKE, BETWEEN, IN, CONTAINS, CONTAINS-ANY | comparion                            |
+ * | =, <, >, <=, >=, <>, !=, IS, LIKE, BETWEEN, IN, CONTAINS, CONTAINS_ANY | comparion                            |
  * | !, NOT                                                                 | logical negation                     |
  * | AND                                                                    | conjunction                          |
  * | OR                                                                     | inclusion                            |
@@ -324,9 +324,9 @@ contains_op
   = nk:(KW_NOT __ KW_CONTAINS) { return nk[0] + ' ' + nk[2]; }
   / KW_CONTAINS
 
-contains-any_op
-  = nk:(KW_NOT __ KW_CONTAINS-ANY) { return nk[0] + ' ' + nk[2]; }
-  / KW_CONTAINS-ANY
+contains_any_op
+  = nk:(KW_NOT __ KW_CONTAINS_ANY) { return nk[0] + ' ' + nk[2]; }
+  / KW_CONTAINS_ANY
 
 like_op_right
   = op:like_op __ right:comparison_expr {
@@ -588,7 +588,7 @@ KW_IN       = "IN"i       !ident_start    { return 'IN';      }
 KW_IS       = "IS"i       !ident_start    { return 'IS';      }
 KW_LIKE     = "LIKE"i     !ident_start    { return 'LIKE';    }
 KW_CONTAINS = "CONTAINS"i !ident_start    { return 'CONTAINS';}
-KW_CONTAINS-ANY = "CONTAINS-ANY"i !ident_start    { return 'CONTAINS-ANY';}
+KW_CONTAINS_ANY = "CONTAINS_ANY"i !ident_start    { return 'CONTAINS_ANY';}
 
 KW_NOT      = "NOT"i      !ident_start    { return 'NOT';     }
 KW_AND      = "AND"i      !ident_start    { return 'AND';     }

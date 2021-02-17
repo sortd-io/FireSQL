@@ -108,7 +108,25 @@ export function applyWhere(
         astWhere.operator,
         astWhere.right
       );
-    } else {
+    } 
+    else if (astWhere.operator === 'CONTAINS_ANY') {
+      assert(
+        astWhere.left.type === 'column_ref',
+        'Unsupported WHERE type on left side.'
+      );
+      assert(
+        ['object'].includes(astWhere.right.type),
+        'Only ARRAYS are supported with CONTAINS_ANY in WHERE clause.'
+      );
+
+      queries = applyCondition(
+        queries,
+        astWhere.left.column,
+        astWhere.operator,
+        astWhere.right
+      );
+    }
+    else {
       assert(
         astWhere.left.type === 'column_ref',
         'Unsupported WHERE type on left side.'
@@ -202,7 +220,7 @@ function whereFilterOp(op: string): firebase.firestore.WhereFilterOp {
     case 'CONTAINS':
       newOp = 'array-contains';
       break;
-    case 'CONTAINS-ANY':
+    case 'CONTAINS_ANY':
       newOp = 'array-contains-any';
       break;
     case 'NOT':
